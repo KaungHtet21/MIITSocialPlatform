@@ -7,8 +7,8 @@ import { PaperProvider } from "react-native-paper";
 import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
 import AttendanceScreen from "./screens/AttendanceScreen";
-import ChatScreen from "./screens/ChatScreen";
-import BookmarkScreen from "./screens/BookmarkScreen";
+import TimetableScreen from "./screens/TimetableScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -26,12 +26,12 @@ export default function App() {
             let iconName;
             if (route.name === "Home") {
               iconName = focused ? "home" : "home-outline";
-            } else if (route.name === "Chat") {
-              iconName = focused ? "chat" : "chat-outline";
+            } else if (route.name === "Timetable") {
+              iconName = focused ? "timetable" : "timetable";
             } else if (route.name === "Attendance") {
               iconName = focused ? "calendar" : "calendar-outline";
-            } else if (route.name === "Bookmark") {
-              iconName = focused ? "message-bookmark" : "message-bookmark-outline";
+            } else if (route.name === "Profile") {
+              iconName = focused ? "account-circle" : "account-circle-outline";
             } 
             return (
               <>
@@ -55,9 +55,9 @@ export default function App() {
         })}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Chat" component={ChatScreen} />
+        <Tab.Screen name="Timetable" component={TimetableScreen} />
         <Tab.Screen name="Attendance" component={AttendanceScreen} />
-        <Tab.Screen name="Bookmark" component={BookmarkScreen} />
+        <Tab.Screen name="Profile" component={ProfileScreen} />
       </Tab.Navigator>
     );
   }
@@ -80,12 +80,3 @@ export default function App() {
     </>
   );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-// });

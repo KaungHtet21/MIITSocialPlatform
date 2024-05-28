@@ -3,12 +3,24 @@ import React, { useState } from "react";
 import logo from "../assets/miit_logo.png";
 import { Button, TextInput } from "react-native-paper";
 import theme from "../theme";
+import { useNavigation } from "@react-navigation/native";
 
-export default function LoginScreen({navigation}) {
+export default function LoginScreen() {
+  const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [disableSignInBtn, setDisableSignInBtn] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+  const [authError, setAuthError] = useState(false);
+
+  const handleSignIn = () => {
+    if(email === "kaunghtetkyaw.dev@gmail.com" && password === "123123") {
+      setAuthError(false)
+      navigation.navigate("bottomnavigationbar")
+    }else {
+      setAuthError(true)
+    }
+  };
 
   return (
     <View
@@ -40,7 +52,9 @@ export default function LoginScreen({navigation}) {
       <Text style={{ fontSize: 20, fontWeight: "bold", marginTop: 10 }}>
         Sign In
       </Text>
+      {authError && <Text style={{ color: "red" }}>*Authentication fail</Text>}
       <TextInput
+        error={authError}
         label="Email"
         mode="outlined"
         style={{ backgroundColor: "transparent", marginTop: 10 }}
@@ -55,8 +69,6 @@ export default function LoginScreen({navigation}) {
           />
         }
         onChangeText={(value) => [
-          console.log("Value = ", value),
-          console.log("Password = ", password),
           setEmail(value),
           value === "" || password === ""
             ? setDisableSignInBtn(true)
@@ -64,6 +76,7 @@ export default function LoginScreen({navigation}) {
         ]}
       />
       <TextInput
+        error={authError}
         label="Password"
         secureTextEntry={!showPassword}
         mode="outlined"
@@ -94,7 +107,7 @@ export default function LoginScreen({navigation}) {
         buttonColor={theme.colors.primary}
         mode="contained"
         disabled={disableSignInBtn}
-        onPress={() => navigation.navigate("bottomnavigationbar")}
+        onPress={() => handleSignIn()}
       >
         Sign In
       </Button>

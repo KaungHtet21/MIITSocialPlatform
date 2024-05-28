@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const BookmarkScreen = () => {
+const TimetableScreen = () => {
   return (
     <View>
-      <Text>BookmarkScreen</Text>
+      <Text>TimetableScreen</Text>
     </View>
   )
 }
 
-export default BookmarkScreen
+export default TimetableScreen
